@@ -1,0 +1,132 @@
+main {
+  min-height: 83.9vh;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #151719;
+
+
+}
+
+a {
+  font-weight: 500;
+
+  text-decoration: inherit;
+  color: #5D5DFF;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+hr {
+  color: 'grey';
+  background-Color: '#FFFFF';
+  height: '1px';
+  border: 'none'
+}
+
+
+
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-link {
+  font-size: 1.1em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+
+.navbar .dropdown-menu .dropdown-item.active,
+.navbar .dropdown-menu .dropdown-item:active ,
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #5D5DFF!important;
+  color: white !important; /* Ensure the text color is readable */
+}
+
+
+button {
+  border-radius: 8px;
+  width: 110px;
+  height: 50px;
+  border: 1px solid transparent;
+  align-items: center;
+  padding: auto;
+
+  font-size: 1.1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #ffffff;
+  background-color: #5D5DFF;
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+  background-color: #343638;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+  color: #cccc;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* customScrollbar.css */
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Width of the vertical scrollbar */
+  height: 8px;
+  /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Roundness of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.rounded-left {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+.custom-accordion .accordion-button {
+  color:#495057; /* Text color for accordion header */
+  background-color: #f9f9f9; /* Background color for accordion header */
+}
+
+.custom-accordion .accordion-button:not(.collapsed) {
+  color:#495057; /* Text color for accordion header */
+  background-color: #f9f9f9 /* Background color for expanded accordion header */
+}
+
+.custom-accordion .accordion-body {
+  color:#495057; /* Text color for accordion header */
+  background-color: #f9f9f9 ;
+}

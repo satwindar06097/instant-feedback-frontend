@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import ReviewCard from "../components/ReviewCard";
-import { Link } from "react-router-dom";
 import { delete_Post } from "../actions/postActions";
 import { RiDeleteBin3Fill } from "react-icons/ri";
 import Loader from "../components/Loader";
@@ -18,28 +17,23 @@ const PostReviewScreen = () => {
   const deletePost = useSelector((state) => state.deletePost);
   const { success: deleteSuccess, loading } = deletePost;
 
-  const sluger = useParams();
-
   useEffect(() => {
     if (deleteSuccess) {
       navigate("/dashboard");
     }
   }, [deleteSuccess, navigate]);
 
+  // Directly use slug from post
   const deleteHandler = (e) => {
     e.preventDefault();
-    dispatch(delete_Post(sluger));
+    dispatch(delete_Post(slug));
   };
 
   return (
     <Container>
       {loading && <Loader />}
-      <Row className=" pt-5">
-        <Col
-          md={6}
-          xs={12}
-          className="d-flex flex-column align-items-center mb-4"
-        >
+      <Row className="pt-5">
+        <Col md={6} xs={12} className="d-flex flex-column align-items-center mb-4">
           <img
             src={image}
             alt={title}

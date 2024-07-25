@@ -143,7 +143,7 @@ export const create_Review =
     }
   };
 
-export const delete_Post = (sluger) => async (dispatch, getState) => {
+export const delete_Post = (slug) => async (dispatch, getState) => {
   try {
     dispatch({
       type: DELETE_POST_REQUEST,
@@ -153,7 +153,7 @@ export const delete_Post = (sluger) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    const slugStr = typeof sluger === "string" ? sluger : sluger.slug;
+    const slugStr = typeof slug === "string" ? slug : slug.slug;
     const config = {
       headers: {
         "Content-Type": "application/json",

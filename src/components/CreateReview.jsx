@@ -60,7 +60,7 @@ const CreateReview = () => {
                 objectFit: "cover",
               }}
               src={post.image}
-              alt="Post"
+              alt={post.title}
             />
           </div>
           <p

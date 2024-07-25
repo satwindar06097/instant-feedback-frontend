@@ -33,7 +33,7 @@ const PostReviewScreen = () => {
 
   return (
     <Container>
-      {loading && <Loader />}
+      {loading && <Loader/>}
       <Row className="pt-5">
         <Col md={6} xs={12} className="d-flex flex-column align-items-center mb-4">
           <img
@@ -51,9 +51,9 @@ const PostReviewScreen = () => {
             <h4>{title}</h4>
             {/* Internal Link with state */}
             <Link to={`/create/review/${slug}`} state={{ post }}>
-              <h6>Internal Navigation</h6>
             </Link>
-            {/* Public URL for sharing */}
+            
+            
             <h6>
               Public URL:
               <a
@@ -69,6 +69,7 @@ const PostReviewScreen = () => {
                 {publicURL}
               </a>
             </h6>
+           
           </div>
         </Col>
         <Col

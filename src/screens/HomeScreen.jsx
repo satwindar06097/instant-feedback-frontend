@@ -44,9 +44,10 @@ const HomeScreen = () => {
         <Col xs={12} md={6} className="mx-auto mb-4">
           <h4>A dedicated landing page</h4>
           <p style={{ maxWidth: "500px" }}>
-            Create a dedicated landing page for your business. Share the page
-            link easily via email, social media, or even SMS. Setup can be done
-            in two minutes.
+            Create a dedicated landing page for your business that can be
+            effortlessly shared via email, social media, or SMS. Setting it up
+            takes just two minutes. By clicking on an image, you'll be directed
+            to a single page featuring all reviews for that specific post.
           </p>
         </Col>
         <Col xs={12} md={6} className="d-flex justify-content-center">

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate, Link  } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col, Button} from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import ReviewCard from "../components/ReviewCard";
 import { delete_Post } from "../actions/postActions";
 import { RiDeleteBin3Fill } from "react-icons/ri";
@@ -29,6 +29,8 @@ const PostReviewScreen = () => {
     dispatch(delete_Post(slug));
   };
 
+  const publicURL = `https://instant-feedback-web.netlify.app/create/review/${slug}`;
+
   return (
     <Container>
       {loading && <Loader />}
@@ -55,7 +57,7 @@ const PostReviewScreen = () => {
             <h6>
               Public URL:
               <a
-                href={`https://instant-feedback-web.netlify.app/create/review/${slug}`}
+                href={publicURL}
                 style={{
                   textDecoration: "underline",
                   fontSize: "18px",
@@ -64,7 +66,7 @@ const PostReviewScreen = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {`https://instant-feedback-web.netlify.app/create/review/${slug}`}
+                {publicURL}
               </a>
             </h6>
           </div>

@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 const Post = ({ post }) => {
   const { image, slug, title } = post;
   const [showModal, setShowModal] = useState(false);
+  
   const copyToClipboard = () => {
+    const url = `https://instant-feedback-web.netlify.app/create/review/${slug}`;
     navigator.clipboard
-      .writeText(`https://instant-feedback-web.netlify.app/create/review/${slug}`)
+      .writeText(url)
       .then(() => {
         setShowModal(true);
         setTimeout(() => setShowModal(false), 1000); // Hide modal after 1 second

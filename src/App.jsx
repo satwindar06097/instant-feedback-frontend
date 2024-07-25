@@ -17,7 +17,7 @@ function App() {
       <main className="py-3">
         <Container>
           <Routes>
-            <Route>
+            
               <Route path="/" element={<HomeScreen />} />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/profile" element={<ProfileUpdateScreen />} />
@@ -26,7 +26,7 @@ function App() {
               <Route path="/creatPost" element={<CreatePostScreen />} />
               <Route path="/post/review/:slug" element={<PostReviewScreen/>} />
               <Route path="/create/review/:slug" element={<CreateReview/>} />
-            </Route>
+            
           </Routes>
         </Container>
       </main>

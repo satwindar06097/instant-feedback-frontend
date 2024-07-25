@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 const Post = ({ post }) => {
   const { image, slug, title } = post;
   const [showModal, setShowModal] = useState(false);
-
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(slug)
+      .writeText(`https://instant-feedback-web.netlify.app/create/review/${slug}`)
       .then(() => {
         setShowModal(true);
         setTimeout(() => setShowModal(false), 1000); // Hide modal after 1 second
@@ -18,7 +17,7 @@ const Post = ({ post }) => {
         console.error("Failed to copy: ", err);
       });
   };
-
+  
   return (
     <Container
       className="bg-dark rounded"

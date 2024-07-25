@@ -54,7 +54,7 @@ const PostReviewScreen = () => {
           <div className="text-center mt-3">
             <h4>{title}</h4>
             <Link  to={`/create/review/${slug}`}
-             state={{post}}><h6>Public URL : <span style={{textDecoration:"underline",fontSize:"18px"}}>{slug}</span></h6></Link>
+             state={{post}}><h6>Public URL : <span style={{textDecoration:"underline",fontSize:"18px"}}>{`https://instant-feedback-web.netlify.app/create/review/${slug}`}</span></h6></Link>
           </div>
         </Col>
         <Col

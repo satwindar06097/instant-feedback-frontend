@@ -53,23 +53,26 @@ const PostReviewScreen = () => {
           />
           <div className="text-center mt-3">
             <h4>{title}</h4>
+            {/* Internal Link with state */}
             <Link to={`/create/review/${slug}`} state={{ post }}>
-              <h6>
-                Public URL:
-                <a
-                  href={`https://instant-feedback-web.netlify.app/create/review/${slug}`}
-                  style={{
-                    textDecoration: "underline",
-                    fontSize: "18px",
-                    marginLeft: "5px",
-                  }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {`https://instant-feedback-web.netlify.app/create/review/${slug}`}
-                </a>
-              </h6>
+              <h6>Internal Navigation</h6>
             </Link>
+            {/* Public URL for sharing */}
+            <h6>
+              Public URL:
+              <a
+                href={`https://instant-feedback-web.netlify.app/create/review/${slug}`}
+                style={{
+                  textDecoration: "underline",
+                  fontSize: "18px",
+                  marginLeft: "5px",
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {`https://instant-feedback-web.netlify.app/create/review/${slug}`}
+              </a>
+            </h6>
           </div>
         </Col>
         <Col

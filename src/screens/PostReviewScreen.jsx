@@ -1,41 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import ReviewCard from "../components/ReviewCard";
 import { delete_Post } from "../actions/postActions";
 import { RiDeleteBin3Fill } from "react-icons/ri";
 import Loader from "../components/Loader";
+import Message from "../components/Message";
+import { getAll_Reviews } from "../actions/postActions";
 
 const PostReviewScreen = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { post } = location.state || { post: {} };
-  const { image, title, slug, reviews, content } = post;
+  const { image, title, slug, content } = post;
 
   const deletePost = useSelector((state) => state.deletePost);
-  const { success: deleteSuccess, loading } = deletePost;
+  const { success: deleteSuccess, loading, error } = deletePost;
+
+  const getAllReviews = useSelector((state) => state.getAllReviews);
+  const { reviews } = getAllReviews;
+
+  console.log(reviews);
+
+  const deleteReview = useSelector((state) => state.deleteReview);
+  const { success } = deleteReview;
 
   useEffect(() => {
     if (deleteSuccess) {
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     }
-  }, [deleteSuccess, navigate]);
+    dispatch(getAll_Reviews(slug));
+  }, [deleteSuccess, navigate, dispatch, slug, success]);
 
-  // Directly use slug from post
-  const deleteHandler = (e) => {
-    e.preventDefault();
+  const handleDelete = () => {
     dispatch(delete_Post(slug));
+    setShowModal(false);
   };
 
   const publicURL = `https://instant-feedback-web.netlify.app/create/review/${slug}`;
 
   return (
     <Container>
-      {loading && <Loader/>}
+      {loading && <Loader />}
+      {error && <Message />}
       <Row className="pt-5">
-        <Col md={6} xs={12} className="d-flex flex-column align-items-center mb-4">
+        <Col
+          md={6}
+          xs={12}
+          className="d-flex flex-column align-items-center mb-4"
+        >
           <img
             src={image}
             alt={title}
@@ -51,25 +68,22 @@ const PostReviewScreen = () => {
             <h4>{title}</h4>
             {/* Internal Link with state */}
             <Link to={`/create/review/${slug}`} state={{ post }}>
+              <h6>
+                Public URL:
+                <a
+                  href={publicURL}
+                  style={{
+                    textDecoration: "underline",
+                    fontSize: "18px",
+                    marginLeft: "5px",
+                  }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {publicURL}
+                </a>
+              </h6>
             </Link>
-            
-            
-            <h6>
-              Public URL:
-              <a
-                href={publicURL}
-                style={{
-                  textDecoration: "underline",
-                  fontSize: "18px",
-                  marginLeft: "5px",
-                }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {publicURL}
-              </a>
-            </h6>
-           
           </div>
         </Col>
         <Col
@@ -94,7 +108,7 @@ const PostReviewScreen = () => {
           <Button
             style={{ width: "160px" }}
             variant="danger"
-            onClick={deleteHandler}
+            onClick={() => setShowModal(true)}
           >
             <RiDeleteBin3Fill /> Delete Space
           </Button>
@@ -109,6 +123,21 @@ const PostReviewScreen = () => {
           </Col>
         ))}
       </Row>
+      {/* Confirmation Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this Post?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

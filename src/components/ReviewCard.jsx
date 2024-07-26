@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Accordion, Modal, Button } from "react-bootstrap";
 import { format } from "date-fns";
@@ -8,8 +7,10 @@ import { RiDeleteBin3Fill } from "react-icons/ri";
 import Message from "./Message";
 import Loader from "./Loader";
 
-const ReviewCard = ({ review ,slug}) => {
+const ReviewCard = ({ review }) => {
   const [showModal, setShowModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false); 
+  
 
   const {
     customer_name,
@@ -24,19 +25,28 @@ const ReviewCard = ({ review ,slug}) => {
 
   const dispatch = useDispatch();
   const deleteReview = useSelector((state) => state.deleteReview);
-  const {  success ,loading, error } = deleteReview;
+  const { error } = deleteReview;
 
   const formattedDate = format(new Date(created_at), "yyyy-MM-dd HH:mm");
-  const navigate = useNavigate()
+
 
   const handleDelete = () => {
-    dispatch(delete_Review(my_id));
-    setShowModal(false);
+    setIsDeleting(true); // Show loader
+    dispatch(delete_Review(my_id))
+      .then(() => {
+        setIsDeleting(false); // Hide loader on success
+        setShowModal(false);
+      })
+      .catch(() => {
+        setIsDeleting(false); // Hide loader on error
+        setShowModal(false);
+      });
   };
 
   return (
     <Container className="bg-dark rounded p-3">
-     {error && <Message />}
+      {error && <Message />}
+      {isDeleting && <Loader />}
       {video_review && (
         <Row className="mb-3 no-gutters">
           <Col className="p-0">
@@ -114,9 +124,8 @@ const ReviewCard = ({ review ,slug}) => {
             </div>
           </Row>
         </Col>
-       
         <Row style={{ marginLeft: "95px", marginTop: "15px" }}>
-          <Button style={{width:"160px"}} variant="danger" onClick={() => setShowModal(true)}>
+          <Button style={{ width: "160px" }} variant="danger" onClick={() => setShowModal(true)}>
             <RiDeleteBin3Fill /> Delete
           </Button>
         </Row>

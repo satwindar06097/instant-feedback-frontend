@@ -6,12 +6,7 @@ function Loader() {
     <Spinner
       animation='border' 
       role='status'
-      style={{
-        height: "40px",
-        width: "40px",
-        margin: 'auto',
-        display: "block"
-      }}
+      className='spinner-border-custom' // Apply the custom class
     >
     </Spinner>
   );

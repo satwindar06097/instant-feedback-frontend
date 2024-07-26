@@ -19,6 +19,9 @@ import {
  DELETE_REVIEW_REQUEST,
  DELETE_REVIEW_SUCCESS,
 
+ GET_ALL_REVIEWS_REQUEST,
+ GET_ALL_REVIEWS_FAIL,
+ GET_ALL_REVIEWS_SUCCESS,
 } from "../constants/postConstants";
 
 export const createPostReducer = (state = {}, action) => {
@@ -66,30 +69,40 @@ export const getAllPostReducer = (state = { posts: [] }, action) => {
   export const deletePostReducer = (state = {}, action) => {
     switch (action.type) {
       case DELETE_POST_REQUEST:
-        return { loading: true };
+        return {...state, loading: true };
       case DELETE_POST_SUCCESS:
-          return { loading: false, success: true, post: action.payload };
+          return {...state,loading: false, success: true, post: action.payload };
       case DELETE_POST_FAIL:
-        return { loading: false, error: action.payload };
+        return {...state,loading: false, error: action.payload };
   
       default:
         return state;
     }
   };
 
-export const deleteReviewReducer =(state={},action) =>{
+export const deleteReviewReducer = (state ={} ,action) => {
   switch (action.type) {
     case DELETE_REVIEW_REQUEST:
-      return {loading:true}
+      return { ...state, loading: true };
     case DELETE_REVIEW_SUCCESS:
-      return{loading:false,success:true}  
+      return { ...state, loading: false, success: true };
     case DELETE_REVIEW_FAIL:
-      return{loading :false, error : action.payload}  
-  
+      return { ...state, loading: false, error: action.payload};
     default:
-      return state
+      return state;
   }
-
-}  
+};
 
   
+export const getAllReviewReducer = (state = { reviews: [] }, action) => {
+  switch (action.type) {
+    case GET_ALL_REVIEWS_REQUEST:
+      return { loading: true, reviews: [] };
+    case GET_ALL_REVIEWS_SUCCESS:
+      return { loading: false, success: true, reviews: action.payload };
+    case GET_ALL_REVIEWS_FAIL:
+      return { loading: false, error: action.payload, reviews: [] };
+    default:
+      return state;
+  }
+};

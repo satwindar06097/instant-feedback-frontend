@@ -15,6 +15,9 @@ import {
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS,
+GET_ALL_REVIEWS_REQUEST,
+ GET_ALL_REVIEWS_FAIL,
+ GET_ALL_REVIEWS_SUCCESS,
 } from "../constants/postConstants";
 
 export const createPost =
@@ -181,6 +184,44 @@ export const delete_Post = (slug) => async (dispatch, getState) => {
     });
   }
 };
+
+export const getAll_Reviews = (slug) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: GET_ALL_REVIEWS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const slugStr = typeof slug === "string" ? slug : slug.slug;
+
+    const { data } = await axios.get(
+      `https://instant-feedback-backend.onrender.com/api/posts/reviews/${slugStr}`,
+      config
+    );
+    console.log(data);
+    dispatch({
+      type: GET_ALL_REVIEWS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_REVIEWS_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
+
 
 export const delete_Review = (my_id) => async (dispatch, getState) => {
   try {

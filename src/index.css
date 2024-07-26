@@ -130,3 +130,28 @@ button:focus-visible {
   color:#495057; /* Text color for accordion header */
   background-color: #f9f9f9 ;
 }
+.spinner-border-custom {
+  height: 40px;
+  width: 40px;
+  margin: auto;
+  display: block;
+  border-width: 5px;
+  border-top-color: #ff5733; /* Primary color */
+  border-right-color: #33ff57; /* Secondary color */
+  border-bottom-color: #3357ff; /* Tertiary color */
+  border-left-color: transparent; /* Background color */
+  animation: spin 1s linear infinite, color-change 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes color-change {
+  0% { border-top-color: #ff5733; }
+  25% { border-top-color: #33ff57; }
+  50% { border-top-color: #3357ff; }
+  75% { border-top-color: #ff5733; }
+  100% { border-top-color: #33ff57; }
+}

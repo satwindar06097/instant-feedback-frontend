@@ -63,18 +63,20 @@ const CreateReview = () => {
               alt={post.title}
             />
           </div>
-          <p
+          <div
             style={{
               height: "auto",
               width: "100%",
               maxWidth: "450px",
-              marginTop: "50px",
+              marginLeft:"15px",
+              marginTop: "10px",
               overflow: "hidden",
               wordWrap: "break-word",
             }}
           >
-            {post.content}
-          </p>
+            <h5>{post.title}</h5>
+            <h6>{post.content}</h6>
+          </div>
         </Col>
         <Col
           xs={12}
@@ -85,7 +87,8 @@ const CreateReview = () => {
         >
           <h1 style={{ color: "#ffff" }}>We Value Your Feedback!</h1>
           <h5 style={{ color: "#5D5DFF" }}>
-            Tell us about your experience and how we can make things even better.
+            Tell us about your experience and how we can make things even
+            better.
           </h5>
           {error && <Message variant="danger">{error}</Message>}
           {loading && <Loader />}
@@ -129,7 +132,9 @@ const CreateReview = () => {
             </Form.Group>
 
             <Form.Group controlId="text_review">
-              <Form.Label>Share your thoughts and suggestions with us.</Form.Label>
+              <Form.Label>
+                Share your thoughts and suggestions with us.
+              </Form.Label>
               <Form.Control
                 required
                 as="textarea"
@@ -162,7 +167,8 @@ const CreateReview = () => {
           <Modal.Title>Thank You!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Thank you for your feedback! We appreciate your input and will use it to improve our services.
+          Thank you for your feedback! We appreciate your input and will use it
+          to improve our services.
         </Modal.Body>
         <Modal.Footer>
           <button variant="secondary" onClick={handleClose}>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { create_Review } from "../actions/postActions";
+import { getSingle_Post } from "../actions/postActions";
 
 const CreateReview = () => {
   const [name, setName] = useState("");
@@ -15,11 +16,14 @@ const CreateReview = () => {
   const [video_review, setVideo_review] = useState("");
   const [showThankYou, setShowThankYou] = useState(false);
 
-  const location = useLocation();
-  const { post } = location.state || { post: {} };
+
 
   const createReview = useSelector((state) => state.createReview);
   const { success, error, loading } = createReview;
+
+  const getSinglePost = useSelector((state) => state.getSinglePost)
+  const {post} = getSinglePost
+  c
   const dispatch = useDispatch();
 
   const slug = useParams();
@@ -38,24 +42,28 @@ const CreateReview = () => {
       )
     );
   };
+  const handleClose = () => setShowThankYou(false);
 
   useEffect(() => {
     if (success) {
       setShowThankYou(true);
     }
-  }, [success]);
+    dispatch(getSingle_Post(slug))
+  }, [success,dispatch,slug]);
 
-  const handleClose = () => setShowThankYou(false);
+  
+  
 
   return (
     <Container>
+    {loading && <Loader/>}
       <Row className="d-flex justify-content-center align-items-center">
         <Col xs={12} md={4}>
           <div>
             <img
               className="rounded"
               style={{
-                height: "350px",
+                height: "300px",
                 width: "350px",
                 objectFit: "cover",
               }}

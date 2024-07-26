@@ -68,6 +68,7 @@ const PostReviewScreen = () => {
             <h4>{title}</h4>
             {/* Internal Link with state */}
             <Link to={`/create/review/${slug}`} state={{ post }}>
+            </Link>
               <h6>
                 Public URL:
                 <a
@@ -83,7 +84,7 @@ const PostReviewScreen = () => {
                   {publicURL}
                 </a>
               </h6>
-            </Link>
+            
           </div>
         </Col>
         <Col

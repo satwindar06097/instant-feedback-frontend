@@ -7,6 +7,10 @@ import {
   GET_ALL_POST_SUCCESS,
   GET_ALL_POST_FAIL,
 
+  GET_SINGLE_POST_FAIL,
+  GET_SINGLE_POST_REQUEST,
+  GET_SINGLE_POST_SUCCESS,
+
  CREATE_REVIEW_REQUEST,
  CREATE_REVIEW_SUCCESS,
  CREATE_REVIEW_FAIL,
@@ -46,6 +50,19 @@ export const getAllPostReducer = (state = { posts: [] }, action) => {
         return { loading: false, success: true, posts: action.payload };
       case GET_ALL_POST_FAIL:
         return { loading: false, error: action.payload, posts: [] };
+      default:
+        return state;
+    }
+  };
+
+  export const getSinglePostReducer = (state = { post: [] }, action) => {
+    switch (action.type) {
+      case GET_SINGLE_POST_REQUEST:
+        return { loading: true, post: [] };
+      case GET_SINGLE_POST_SUCCESS:
+        return { loading: false, success: true, post: action.payload };
+      case GET_SINGLE_POST_FAIL:
+        return { loading: false, error: action.payload, post: [] };
       default:
         return state;
     }

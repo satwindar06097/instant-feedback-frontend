@@ -10,6 +10,8 @@ import Loader from "./Loader";
 const ReviewCard = ({ review }) => {
   const [showModal, setShowModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false); 
+
+  
   
 
   const {

@@ -3,18 +3,28 @@ import {
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAIL,
+
+
   GET_ALL_POST_REQUEST,
   GET_ALL_POST_SUCCESS,
   GET_ALL_POST_FAIL,
+
+  GET_SINGLE_POST_FAIL,
+  GET_SINGLE_POST_REQUEST,
+  GET_SINGLE_POST_SUCCESS,
+
   CREATE_REVIEW_REQUEST,
   CREATE_REVIEW_SUCCESS,
   CREATE_REVIEW_FAIL,
+
   DELETE_POST_REQUEST,
   DELETE_POST_FAIL,
   DELETE_POST_SUCCESS,
+
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS,
+  
 GET_ALL_REVIEWS_REQUEST,
  GET_ALL_REVIEWS_FAIL,
  GET_ALL_REVIEWS_SUCCESS,
@@ -93,6 +103,34 @@ export const getAll_Post = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_POST_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
+
+export const getSingle_Post = (slug) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_SINGLE_POST_REQUEST,
+    });
+
+    const slugStr = typeof slug === "string" ? slug : slug.slug;
+    const { data } = await axios.get(
+      `https://instant-feedback-backend.onrender.com/api/posts/single/${slugStr}`,
+     
+    );
+    console.log(data);
+    
+    dispatch({
+      type: GET_SINGLE_POST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type:GET_SINGLE_POST_FAIL,
       payload:
         error.response && error.response.data.detail
           ? error.response.data.detail

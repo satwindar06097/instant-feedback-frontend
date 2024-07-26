@@ -3,7 +3,7 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware } f
 import{ thunk} from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import {userLoginReducer,userRegisterReducer,userUpdateProfileReducer,userDetailsReducer} from "./reducers/userReducers";
-import{createPostReducer,getAllPostReducer,createReviewReducer, deletePostReducer, deleteReviewReducer, getAllReviewReducer} from './reducers/postReducer';
+import{createPostReducer,getAllPostReducer,createReviewReducer, deletePostReducer, deleteReviewReducer, getAllReviewReducer, getSinglePostReducer} from './reducers/postReducer';
 
 
 const reducer = combineReducers({
@@ -13,6 +13,7 @@ userUpdateProfile:userUpdateProfileReducer,
 userDetails:userDetailsReducer,
 postCreate:createPostReducer,
 getAllPost:getAllPostReducer,
+getSinglePost:getSinglePostReducer,
 createReview:createReviewReducer,
 deletePost : deletePostReducer,
 deleteReview : deleteReviewReducer,

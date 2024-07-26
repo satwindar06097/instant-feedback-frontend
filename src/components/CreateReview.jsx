@@ -61,12 +61,13 @@ const CreateReview = () => {
         <Col xs={12} md={4}>
           <div>
             <img
-              className="rounded"
+              className=" img-fluid rounded"
               style={{
-                height: "300px",
-                width: "350px",
-                objectFit: "cover",
-              }}
+              height: "auto",
+              width: "100%",
+              maxWidth: "250px",
+              objectFit: "cover",
+            }}
               src={post.image}
               alt={post.title}
             />
@@ -82,7 +83,7 @@ const CreateReview = () => {
               wordWrap: "break-word",
             }}
           >
-            <h5>{post.title}</h5>
+            <h4>{post.title}</h4>
             <h6>{post.content}</h6>
           </div>
         </Col>

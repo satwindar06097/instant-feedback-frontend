@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Form, Row, Col, Container, Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
@@ -23,7 +23,7 @@ const CreateReview = () => {
 
   const getSinglePost = useSelector((state) => state.getSinglePost)
   const {post} = getSinglePost
-  c
+  
   const dispatch = useDispatch();
 
   const slug = useParams();

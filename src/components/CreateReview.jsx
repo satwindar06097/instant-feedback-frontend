@@ -57,6 +57,8 @@ const CreateReview = () => {
   return (
     <Container>
     {loading && <Loader/>}
+    {error && <Message variant="danger">{error}</Message>}
+
       <Row className="d-flex justify-content-center align-items-center">
         <Col xs={12} md={4}>
           <div>
@@ -99,8 +101,6 @@ const CreateReview = () => {
             Tell us about your experience and how we can make things even
             better.
           </h5>
-          {error && <Message variant="danger">{error}</Message>}
-          {loading && <Loader />}
           <Form onSubmit={submitHandler} className="w-500">
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>

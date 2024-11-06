@@ -33,6 +33,7 @@ import {
             }
         }
         const{data} = await axios.post('https://instant-feedback-backend.onrender.com/api/users/login/',{'username':email,'password':password},config)
+        console.log(data)
 
         dispatch({
             type:USER_LOGIN_SUCCESS,
